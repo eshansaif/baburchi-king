@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { FaBeer } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     const { user } = useContext(AuthContext);
@@ -40,7 +41,9 @@ const Header = () => {
                             </div>
                         </label>
                     }
-                    <a className="btn btn-ghost">Login</a>
+                    {
+                        user ? <a className="btn btn-ghost">Logout</a> : <Link to="/login" className="btn btn-ghost">Login</Link>
+                    }
                     <a className="btn btn-ghost">Register</a>
                 </div>
             </div>
