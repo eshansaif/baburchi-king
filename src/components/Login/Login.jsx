@@ -1,9 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import { GoogleAuthProvider } from "firebase/auth";
 
 function Login() {
-    const { signIn } = useContext(AuthContext);
+    const { signIn, loginWithGoogle } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
+
 
     const [error, setError] = useState("");
 
@@ -13,7 +16,7 @@ function Login() {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(email, password);
+        // console.log(email, password);
         signIn(email, password)
             .then(result => {
                 const loggedUser = result.user;
@@ -23,6 +26,16 @@ function Login() {
             .catch(err => {
                 console.error(err);
                 setError(err.message);
+            })
+    }
+    const loginWithGoogleHandler = () => {
+        loginWithGoogle(googleProvider)
+            .then(result => {
+                const loggedInUser = result.user;
+                setUser(loggedInUser);
+            })
+            .catch(err => {
+                console.log(err);
             })
     }
 
@@ -85,7 +98,7 @@ function Login() {
                 </div>
 
                 <div className="flex justify-center mb-4">
-                    <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
+                    <button onClick={loginWithGoogleHandler} className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
                         Login with Google
                     </button>
                     <button className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
