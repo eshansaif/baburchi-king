@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
+
 
 const Register = () => {
     const [error, setError] = useState("");
+    const { createUser } = useContext(AuthContext);
 
     const handleRegister = event => {
         event.preventDefault();
@@ -12,7 +15,7 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         const confirm_password = form.confirm_password.value;
-
+        setError("");
         if (password !== confirm_password) {
             setError("Passwords do not match");
             return;
@@ -21,7 +24,18 @@ const Register = () => {
             setError("Password must be at least 6 characters");
             return;
         }
-        setError("");
+
+
+        createUser(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+            })
+            .catch(err => {
+                console.error(err);
+                setError(err.message);
+            })
+
     };
 
     return (
@@ -51,6 +65,7 @@ const Register = () => {
                             name='email'
                             type="email"
                             placeholder="Email"
+                            required
                         />
                     </div>
                     <div className="mb-6">
@@ -63,6 +78,7 @@ const Register = () => {
                             name='password'
                             type="password"
                             placeholder="Password"
+                            required
                         />
                     </div>
                     <div className="mb-6">

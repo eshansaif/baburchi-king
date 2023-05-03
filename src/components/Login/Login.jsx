@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 function Login() {
+    const { signIn } = useContext(AuthContext);
+
+    const [error, setError] = useState("");
+
+    const handleLogin = event => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        console.log(email, password);
+        signIn(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                form.reset();
+            })
+            .catch(err => {
+                console.error(err);
+                setError(err.message);
+            })
+    }
+
     return (
         <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
             <div className="w-full max-w-md">
-                <form className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4">
+                <form onSubmit={handleLogin} className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4">
                     <h3 className="text-center text-gray-900 font-bold mb-2">Please Login</h3>
                     <div className="mb-4">
                         <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
@@ -46,6 +70,9 @@ function Login() {
                             </Link>
                         </p>
                     </div>
+                    {
+                        error && <p className="text-red-600 mt-3 text-center">{error}</p>
+                    }
                 </form>
 
                 <div className="relative mb-3">

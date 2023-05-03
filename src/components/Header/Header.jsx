@@ -1,11 +1,23 @@
 import React from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
-import { FaBeer } from 'react-icons/fa';
+import { FaBeer, FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
+
+    console.log(user);
+
+    const handleLogout = () => {
+        logout()
+            .then((result) => {
+                console.log("Logged out successfully");
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
 
     return (
         <div>
@@ -35,16 +47,19 @@ const Header = () => {
                 </div>
                 <div className="navbar-end">
                     {
-                        user && <label tabIndex={0} className="btn btn-ghost btn-circle avatar" title={user.displayName}>
+                        user ? <label tabIndex={0} className="btn btn-ghost btn-circle avatar" title={user.displayName}>
                             <div className="w-10 rounded-full">
-                                <img src="https://randomuser.me/api/portraits/men/44.jpg" />
+
+                                <img src={user.photoUrl} alt="" />
+
                             </div>
-                        </label>
+                        </label> :
+                            <FaUserCircle />
                     }
                     {
-                        user ? <a className="btn btn-ghost">Logout</a> : <Link to="/login" className="btn btn-ghost">Login</Link>
+                        user ? <button onClick={handleLogout} className="btn btn-ghost">Logout</button> : <Link to="/login" className="btn btn-ghost">Login</Link>
                     }
-                    <a className="btn btn-ghost">Register</a>
+
                 </div>
             </div>
         </div>
