@@ -1,6 +1,10 @@
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
+import SingleChefData from '../SingleChefData/SingleChefData';
 
 const Home = () => {
+    const chefData = useLoaderData();
+    console.log(chefData);
     return (
         <div className="">
             <div className="hero min-h-screen" style={{ backgroundImage: `url("https://d3ox4wjkl7mf3m.cloudfront.net/feed_story/step/yCGo6Rzz3nsf4n9WrquZb3gEHxjaqEZqH5zhSo8h.jpeg")` }}>
@@ -12,6 +16,15 @@ const Home = () => {
                         <button className="btn btn-primary">Explore More</button>
                     </div>
                 </div>
+            </div>
+
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 mb-6 mx-4 md:mx-16'>
+                {
+                    chefData.chefs.map(singleChefData => <SingleChefData
+                        key={singleChefData.id}
+                        singleChefData={singleChefData}
+                    ></SingleChefData>)
+                }
             </div>
         </div>
     );
