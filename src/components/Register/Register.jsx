@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import { updateProfile } from 'firebase/auth';
 
 
 const Register = () => {
@@ -13,6 +14,7 @@ const Register = () => {
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
+        const photoURL = form.photoURL.value;
         const password = form.password.value;
         const confirm_password = form.confirm_password.value;
         setError("");
@@ -30,13 +32,27 @@ const Register = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                event.target.reset();
+                updateUser(loggedUser, name, photoURL)
             })
             .catch(err => {
                 console.error(err);
                 setError(err.message);
             })
 
+
     };
+
+    const updateUser = (user, name, photoURL) => {
+        updateProfile(user, {
+            displayName: name,
+            photoURL: photoURL
+        })
+            .then(result => {
+                console.log(result);
+            })
+    }
+
 
     return (
         <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
@@ -65,6 +81,19 @@ const Register = () => {
                             name='email'
                             type="email"
                             placeholder="Email"
+                            required
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 font-bold mb-2" htmlFor="photoURL">
+                            PhotoURL
+                        </label>
+                        <input
+                            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="photoURL"
+                            name='photoURL'
+                            type="text"
+                            placeholder="PhotoURL"
                             required
                         />
                     </div>
