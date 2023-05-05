@@ -8,7 +8,7 @@ const Header = () => {
     const { user, logout } = useContext(AuthContext);
     const location = useLocation();
 
-    console.log(user);
+    // console.log(user);
 
     const handleLogout = () => {
         logout()

@@ -3,7 +3,10 @@ import { FaArrowRight, FaCheckCircle, FaHeart, FaSortAmountDownAlt, FaStar, FaTh
 import Rating from 'react-rating';
 import { Link, useLoaderData } from 'react-router-dom';
 import swal from 'sweetalert';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init();
 
 
 const ChefRecipes = () => {
@@ -28,7 +31,13 @@ const ChefRecipes = () => {
 
     return (
         <div className='hero-content flex-col lg:flex-row'>
-            <div className="hero min-h-screen md:w-2/5 mt-0" style={{ backgroundImage: `url(${chef_picture})` }}>
+            <div data-aos="fade-up"
+                data-aos-offset="200"
+                // data-aos-delay="50"
+                // data-aos-duration="1000"
+                data-aos-easing="ease-in-out"
+                data-aos-mirror="true"
+                data-aos-once="false" className="hero min-h-screen md:w-2/5 mt-0" style={{ backgroundImage: `url(${chef_picture})` }}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">

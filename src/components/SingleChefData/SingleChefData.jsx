@@ -1,14 +1,26 @@
 import React from 'react';
 import { FaHatCowboy, FaThumbsUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init();
 
 const SingleChefData = ({ singleChefData }) => {
-    console.log(singleChefData);
+    // console.log(singleChefData);
     const { id, chef_picture, chef_name, years_of_experience, number_of_recipes, likes } = singleChefData;
     return (
         <div>
             <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                <img className="h-48 w-full object-cover" src={chef_picture} alt="Chef's Picture" />
+                <img
+                    data-aos="fade-up"
+                    data-aos-offset="200"
+                    // data-aos-delay="50"
+                    // data-aos-duration="1000"
+                    data-aos-easing="ease-in-out"
+                    data-aos-mirror="true"
+                    data-aos-once="false"
+                    className="h-48 w-full object-cover" src={chef_picture} alt="Chef's Picture" />
 
                 <div className="p-6">
                     <h1 className="text-2xl font-bold text-gray-800">{chef_name}</h1>
