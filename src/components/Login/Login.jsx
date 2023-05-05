@@ -32,16 +32,32 @@ function Login() {
                 setError(err.message);
             })
     }
+    // const loginWithGoogleHandler = () => {
+    //     loginWithGoogle(googleProvider)
+    //         .then(result => {
+    //             const loggedInUser = result.user;
+    //             setUser(loggedInUser);
+    //             navigate(from, { replace: true });
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // }
+
     const loginWithGoogleHandler = () => {
         loginWithGoogle(googleProvider)
             .then(result => {
                 const loggedInUser = result.user;
-                setUser(loggedInUser);
+                console.log(loggedInUser);
+                setError("");
+                navigate(from || "/", { replace: true });
             })
             .catch(err => {
                 console.log(err);
-            })
-    }
+                setError(err.message);
+            });
+    };
+
 
     return (
         <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
