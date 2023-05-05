@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import { updateProfile } from 'firebase/auth';
-
+import swal from 'sweetalert';
 
 const Register = () => {
+    const navigate = useNavigate();
     const [error, setError] = useState("");
     const { createUser } = useContext(AuthContext);
 
@@ -34,6 +35,8 @@ const Register = () => {
                 console.log(loggedUser);
                 event.target.reset();
                 updateUser(loggedUser, name, photoURL)
+                swal("Thank You!", "You have registered Successfully!", "success");
+                navigate("/login")
             })
             .catch(err => {
                 console.error(err);
