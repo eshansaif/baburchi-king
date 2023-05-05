@@ -30,8 +30,8 @@ const Header = () => {
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link></li>
-                            <li><Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''}>Blog</Link></li>
-                            <li><Link to="/chef" className={location.pathname === '/chef' ? 'active' : ''}>Chef</Link></li>
+                            <li><Link to="/blogs" className={location.pathname === '/blogs' ? 'active' : ''}>Blogs</Link></li>
+
                             <li><Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Link></li>
                             <li><Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link></li>
 
@@ -43,8 +43,8 @@ const Header = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         <li><Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link></li>
-                        <li><Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''}>Blog</Link></li>
-                        <li><Link to="/chef" className={location.pathname === '/chef' ? 'active' : ''}>Chef</Link></li>
+                        <li><Link to="/blogs" className={location.pathname === '/blogs' ? 'active' : ''}>Blogs</Link></li>
+
                         <li><Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Link></li>
                         <li><Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact</Link></li>
 

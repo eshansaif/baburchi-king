@@ -7,6 +7,9 @@ import NotFound from "../components/NotFound/NotFound";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import ChefRecipes from "../components/ChefRecipes/ChefRecipes";
 import PrivateRoutes from "./PrivateRoutes";
+import Blogs from "../components/Blogs/Blogs";
+import About from "../components/About/About";
+import ContactUs from "../components/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +34,22 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/blogs',
+                element: <Blogs />
+            },
+            {
+                path: '/about',
+                element: <About />
+            },
+            {
+                path: '/contact',
+                element: <ContactUs />
+            },
+            {
+                path: '/about',
+                element: <About />
             },
             {
                 path: "*",
