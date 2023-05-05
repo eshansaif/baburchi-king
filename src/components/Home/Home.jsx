@@ -5,6 +5,7 @@ import PopularRecipes from '../PopularRecipes/PopularRecipes';
 import Newsletter from '../Newletter/Newsletter';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
+import { Spinner } from '@chakra-ui/react';
 // ..
 AOS.init();
 
@@ -50,7 +51,7 @@ const Home = () => {
                         }
                     </div> :
                     <div className="flex justify-center items-center h-screen">
-                        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900">Loading</div>
+                        <Spinner size={64} color="#4B5563" /> {/* render the Spinner component */}
                     </div>
 
             }

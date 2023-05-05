@@ -5,15 +5,13 @@ import { Link, useLoaderData } from 'react-router-dom';
 import swal from 'sweetalert';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
-// ..
+import { Spinner } from '@chakra-ui/react';
 AOS.init();
 
 
 const ChefRecipes = () => {
     const chefRecipe = useLoaderData();
     const { chef_name, chef_picture, likes, number_of_recipes, recipe_info, views, years_of_experience, short_bio } = chefRecipe[0];
-    // console.log(chef_picture);
-    console.log(recipe_info);
     const [isFavorite, setIsFavorite] = useState(false);
 
     const handleAddToFav = () => {
@@ -24,7 +22,7 @@ const ChefRecipes = () => {
     if (!recipe_info) {
         return (
             <div className="flex justify-center items-center h-screen">
-                <Spinner size={64} color="#4B5563" />
+                <Spinner size={64} color="#4B5563" /> {/* render the Spinner component */}
             </div>
         );
     }
