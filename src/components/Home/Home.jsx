@@ -18,6 +18,13 @@ const Home = () => {
                 </div>
             </div>
 
+            <div className="flex items-center mx-4 md:mx-16 my-6">
+                <hr className="border-t border-gray-300 flex-grow mr-3" />
+                <h2 className="text-gray-800 text-lg font-bold">Chefs</h2>
+                <hr className="border-t border-gray-300 flex-grow ml-3" />
+            </div>
+
+
             <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 mb-6 mx-4 md:mx-16'>
                 {
                     chefData.chefs.map(singleChefData => <SingleChefData

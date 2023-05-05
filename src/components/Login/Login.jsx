@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import { GoogleAuthProvider } from "firebase/auth";
 
 function Login() {
     const { signIn, loginWithGoogle } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const googleProvider = new GoogleAuthProvider();
 
 
@@ -15,7 +18,6 @@ function Login() {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-
         // console.log(email, password);
         setError("")
         signIn(email, password)
@@ -23,6 +25,7 @@ function Login() {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 form.reset();
+                navigate(from, { replace: true });
             })
             .catch(err => {
                 console.error(err);
@@ -89,13 +92,10 @@ function Login() {
                     }
                 </form>
 
-                <div className="relative mb-3">
-                    <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                        <div className="w-full border-t border-gray-300"></div>
-                    </div>
-                    <div className="relative flex justify-center">
-                        <span className="px-2 bg-white text-lg font-bold text-gray-700">Or</span>
-                    </div>
+                <div className="flex items-center  my-6">
+                    <hr className="border-t border-gray-300 flex-grow mr-3" />
+                    <h2 className="text-gray-800 text-lg font-bold">Or</h2>
+                    <hr className="border-t border-gray-300 flex-grow ml-3" />
                 </div>
 
                 <div className="flex justify-center mb-4">
