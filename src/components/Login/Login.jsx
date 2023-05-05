@@ -2,13 +2,15 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider } from "firebase/auth";
 
 function Login() {
-    const { signIn, loginWithGoogle } = useContext(AuthContext);
+    const { signIn, loginWithGoogle, loginWithGithub } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
     const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
 
     const [error, setError] = useState("");
@@ -57,6 +59,20 @@ function Login() {
                 setError(err.message);
             });
     };
+
+    const loginWithGithubHandler = () => {
+        loginWithGithub(githubProvider)
+            .then(result => {
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+                setError("");
+                navigate(from || "/", { replace: true });
+            })
+            .catch(err => {
+                console.log(err);
+                setError(err.message);
+            });
+    }
 
 
     return (
@@ -118,7 +134,7 @@ function Login() {
                     <button onClick={loginWithGoogleHandler} className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
                         Login with Google
                     </button>
-                    <button className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    <button onClick={loginWithGithubHandler} className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Login with Github
                     </button>
                 </div>
