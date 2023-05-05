@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className="footer p-10 bg-base-200 text-base-content">
+        <footer className="footer p-10 text-base-200 bg-base-content">
             <div>
-                <h2 className="btn btn-ghost normal-case text-xl">Baburchi King</h2>
+                <Link to="/" ><h2 className="btn btn-ghost normal-case text-xl">Baburchi King</h2></Link>
                 <p>Baburchi King Ltd.<br />Providing Fresh and Healthy Recipes since 1952</p>
             </div>
             <div>

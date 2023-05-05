@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaArrowRight, FaCheckCircle, FaHeart, FaSortAmountDownAlt, FaStar, FaTheaterMasks, FaThumbsUp } from 'react-icons/fa';
 import Rating from 'react-rating';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import swal from 'sweetalert';
 
 
@@ -37,7 +37,7 @@ const ChefRecipes = () => {
                         <h2 className="mb-5 text-3xl font-medium text-start flex justify-center items-center"> Likes <FaThumbsUp className='mx-2 ' /> {likes}</h2>
                         <h2 className="mb-5 text-3xl font-medium text-start flex justify-center items-center">Total Recipes <FaSortAmountDownAlt className='mx-2'></FaSortAmountDownAlt> {number_of_recipes}</h2>
                         <h2 className="mb-5 text-3xl font-medium text-start flex justify-center items-center">Experiences <FaTheaterMasks className='mx-2' /> {years_of_experience} Years</h2>
-                        <button className="btn btn-primary">See All Chefs</button>
+                        <Link to="/"><button className="btn btn-primary">See All Chefs</button></Link>
 
                     </div>
                 </div>

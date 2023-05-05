@@ -17,12 +17,12 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/chefs')
+                loader: () => fetch('https://b7a10-chef-recipe-hunter-server-side-eshansaif-eshansaif.vercel.app/chefs')
             },
             {
                 path: '/chefs/:id',
                 element: <PrivateRoutes><ChefRecipes></ChefRecipes></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/chefs/${params.id}`)
+                loader: ({ params }) => fetch(`https://b7a10-chef-recipe-hunter-server-side-eshansaif-eshansaif.vercel.app/chefs/${params.id}`)
             },
             {
                 path: '/login',

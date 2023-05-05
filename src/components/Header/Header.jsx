@@ -59,7 +59,7 @@ const Header = () => {
 
                             </div>
                         </label> :
-                            <FaUserCircle />
+                            <h1></h1>
                     }
                     {
                         user ? <button onClick={handleLogout} className="btn btn-ghost">Logout</button> : <Link to="/login" className="btn btn-ghost">Login</Link>
